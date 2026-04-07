@@ -1,0 +1,27 @@
+{
+  "name": "@auth-provider/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@auth-provider/auth": "workspace:*",
+    "@auth-provider/db": "workspace:*",
+    "@auth-provider/env": "workspace:*",
+    "@trpc/client": "^11.13.4",
+    "@trpc/server": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@auth-provider/config": "workspace:*",
+    "elysia": "catalog:",
+    "typescript": "catalog:"
+  }
+}
