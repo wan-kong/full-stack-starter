@@ -13,9 +13,12 @@
   "dependencies": {
     "@auth-provider/db": "workspace:*",
     "@auth-provider/env": "workspace:*",
+    "@auth-provider/mail": "workspace:*",
+    "@better-auth/infra": "^0.1.14",
+    "@better-auth/api-key": "1.6.0",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
-    "zod": "catalog:"
+    "@better-auth/prisma-adapter": "1.6.0",
+    "dotenv": "catalog:"
   },
   "devDependencies": {
     "@auth-provider/config": "workspace:*",

@@ -1,37 +1,44 @@
-import { createContext } from "@auth-provider/api/context";
-import { appRouter } from "@auth-provider/api/routers/index";
-import { auth } from "@auth-provider/auth";
 import { env } from "@auth-provider/env/server";
 import { cors } from "@elysiajs/cors";
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { openapi } from "@elysiajs/openapi";
 import { Elysia } from "elysia";
+import { betterAuth, OpenAPI } from "./libs/auth";
 
 const app = new Elysia()
-  .use(
-    cors({
-      origin: env.CORS_ORIGIN,
-      methods: ["GET", "POST", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      credentials: true,
-    }),
-  )
-  .all("/api/auth/*", async (context) => {
-    const { request, status } = context;
-    if (["POST", "GET"].includes(request.method)) {
-      return auth.handler(request);
-    }
-    return status(405);
-  })
-  .all("/trpc/*", async (context) => {
-    const res = await fetchRequestHandler({
-      endpoint: "/trpc",
-      router: appRouter,
-      req: context.request,
-      createContext: () => createContext({ context }),
-    });
-    return res;
-  })
-  .get("/", () => "OK")
-  .listen(3000, () => {
-    console.log("Server is running on http://localhost:3000");
-  });
+	.use(
+		openapi({
+			documentation: {
+				components: await OpenAPI.components,
+				paths: await OpenAPI.getPaths(),
+			},
+		})
+	)
+	.use(
+		cors({
+			origin: env.CORS_ORIGIN,
+			methods: ["GET", "POST", "OPTIONS"],
+			allowedHeaders: ["Content-Type", "Authorization"],
+			credentials: true,
+		})
+	)
+	.use(betterAuth)
+	.get("/", () => "OK, this Page is working with Elysia!")
+	.get(
+		"/me",
+		({ user }) => {
+			return user;
+		},
+		{
+			auth: true,
+			detail: {
+				summary: "Get current user info",
+				description: "Returns the current authenticated user's information.",
+				tags: ["User"],
+			},
+		}
+	)
+	.listen(3000, () => {
+		console.log("Server is running on http://localhost:3000");
+	});
+
+export type App = typeof app;

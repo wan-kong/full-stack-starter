@@ -1,15 +1,21 @@
 import { env } from "@auth-provider/env/server";
-import { drizzle } from "drizzle-orm/mysql2";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+import { PrismaClient } from "./prisma/generated/client";
 
-import * as schema from "./schema";
+export function createPrismaClient() {
+	const databaseUrl: string = env.DATABASE_URL;
+	const url: URL = new URL(databaseUrl);
+	const connectionConfig = {
+		host: url.hostname,
+		port: Number.parseInt(url.port || "3306", 10),
+		user: url.username,
+		password: url.password,
+		database: url.pathname.slice(1),
+	};
 
-export function createDb() {
-  return drizzle({
-    connection: {
-      uri: env.DATABASE_URL,
-    },
-    schema,
-  });
+	const adapter = new PrismaMariaDb(connectionConfig);
+	return new PrismaClient({ adapter });
 }
 
-export const db = createDb();
+const prisma = createPrismaClient();
+export default prisma;

@@ -1,0 +1,23 @@
+{
+  "name": "@auth-provider/mail",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./template": {
+      "default": "./src/template.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@auth-provider/env": "workspace:*",
+    "dotenv": "catalog:",
+    "resend": "^6.10.0",
+    "emailmd": "^0.2.1"
+  },
+  "devDependencies": {
+    "@auth-provider/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

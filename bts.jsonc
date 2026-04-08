@@ -15,7 +15,7 @@
   "createdAt": "2026-04-07T06:31:11.413Z",
   "reproducibleCommand": "bun create better-t-stack@latest auth-provider --frontend none --backend elysia --runtime bun --database mysql --orm drizzle --api trpc --auth better-auth --payments none --addons biome skills turborepo ultracite --examples none --db-setup none --web-deploy none --server-deploy none --git --package-manager bun --install",
   "database": "mysql",
-  "orm": "drizzle",
+  "orm": "prisma",
   "backend": "elysia",
   "runtime": "bun",
   "frontend": [],
