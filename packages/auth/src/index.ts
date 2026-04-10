@@ -32,7 +32,6 @@ export function createAuth() {
 				clientSecret: env.GITHUB_CLIENT_SECRET,
 			},
 		},
-		trustedOrigins: [env.CORS_ORIGIN],
 		emailAndPassword: {
 			enabled: true,
 		},

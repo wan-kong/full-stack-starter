@@ -13,7 +13,7 @@ interface EmailOptions {
 
 const DEFAULT_INFO: Omit<EmailOptions, "to" | "url"> = {
 	siteName: "Auth Provider",
-	baseUrl: env.BETTER_AUTH_URL || "http://localhost:3000",
+	baseUrl: env.BETTER_AUTH_URL,
 	brandColor: "#2563eb",
 };
 

@@ -9,12 +9,10 @@ export const env = createEnv({
 		BETTER_AUTH_SECRET: z.string().min(32),
 		BETTER_AUTH_URL: z.url(),
 		BETTER_AUTH_API_KEY: z.string().min(1).optional(),
-
-		CORS_ORIGIN: z.url(),
 		// Resend
 		RESEND_SEND_EMAIL: z.string().min(1),
 		RESEND_API_KEY: z.string().min(1),
-
+		SERVER_PORT: z.coerce.number().min(1024).max(65_535),
 		NODE_ENV: z
 			.enum(["development", "production", "test"])
 			.default("development"),
