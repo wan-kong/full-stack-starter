@@ -2,13 +2,21 @@
   "name": "@auth-provider/server",
   "type": "module",
   "main": "src/index.ts",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./server": {
+      "default": "./src/server.ts"
+    }
+  },
   "scripts": {
-    "build": "tsdown",
+    "build": "bun run ./scripts/build.ts",
     "check-types": "tsc -b",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "compile": "bun run ./scripts/compile.ts",
     "auth:generate": "bun x auth generate --config ../../packages/auth/src/index.ts --output ../../packages/db/src/prisma/schema/auth.prisma --yes",
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run dist/index.mjs"
+    "dev": "bun run --hot src/server.ts",
+    "start": "bun run dist/index.js"
   },
   "dependencies": {
     "@auth-provider/auth": "workspace:*",
@@ -18,7 +26,8 @@
     "@elysiajs/openapi": "^1.4.14",
     "better-auth": "catalog:",
     "dotenv": "catalog:",
-    "elysia": "catalog:"
+    "elysia": "catalog:",
+    "logixlysia": "^6.3.1"
   },
   "devDependencies": {
     "@auth-provider/config": "workspace:*",
