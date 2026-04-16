@@ -18,7 +18,7 @@ const removeUnifyExport: BunPlugin = {
 for (const target of targets) {
 	const outFile = `./build/auth-${target.split("-").slice(1).join("-")}`;
 	await Bun.build({
-		entrypoints: ["./dist/index.js"],
+		entrypoints: ["./dist/tsdown/index.mjs"],
 		compile: {
 			target,
 			outfile: outFile,
@@ -27,5 +27,5 @@ for (const target of targets) {
 		minify: false,
 		plugins: [removeUnifyExport],
 	});
-	console.log("✓ Built success");
+	console.log(`✓ Built success for ${target}`);
 }

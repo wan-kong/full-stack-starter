@@ -13,7 +13,7 @@ export async function sendEmail({
 	html: string;
 }) {
 	const { error } = await resend.emails.send({
-		from: env.RESEND_SEND_EMAIL || "Next Axure <axure@wankong.top>",
+		from: env.RESEND_SEND_EMAIL || "Auth Provider<welcome@wankong.top>",
 		to,
 		html,
 		subject,
