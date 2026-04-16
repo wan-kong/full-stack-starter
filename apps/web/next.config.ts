@@ -5,12 +5,11 @@ const nextConfig: NextConfig = {
 	typedRoutes: true,
 	reactCompiler: true,
 	transpilePackages: ["@auth-provider/ui"],
-	redirects() {
+	rewrites: () => {
 		return [
 			{
-				source: "/api",
-				permanent: false,
-				destination: process.env.BACKEND_URL as string,
+				source: "/api/:path*",
+				destination: `${process.env.BACKEND_URL}/api/:path*`,
 			},
 		];
 	},

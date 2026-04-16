@@ -26,6 +26,9 @@ export function createAuth() {
 		database: prismaAdapter(prisma, {
 			provider: "mysql",
 		}),
+		account: {
+			skipStateCookieCheck: true,
+		},
 		socialProviders: {
 			github: {
 				clientId: env.GITHUB_CLIENT_ID,
