@@ -1,6 +1,6 @@
 {
-  "extends": "@auth-provider/config/tsconfig.base.json",
-  "compilerOptions": {
-    "strictNullChecks": true
-  }
+	"extends": "@auth-provider/config/tsconfig.base.json",
+	"compilerOptions": {
+		"strictNullChecks": true
+	}
 }

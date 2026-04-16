@@ -1,0 +1,38 @@
+{
+	"name": "@auth-provider/web",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "portless web next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@auth-provider/ui": "workspace:*",
+		"lucide-react": "catalog:",
+		"next": "catalog:",
+		"next-themes": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"sonner": "catalog:",
+		"babel-plugin-react-compiler": "^1.0.0",
+		"dotenv": "catalog:",
+		"zod": "catalog:",
+		"@better-auth/api-key": "catalog:",
+		"@auth-provider/env": "workspace:*",
+		"@auth-provider/api": "workspace:*",
+		"@auth-provider/auth": "workspace:*",
+		"@tanstack/react-query": "^5.90.12",
+		"better-auth": "catalog:",
+		"@tanstack/react-form": "^1.28.0"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"tailwindcss": "catalog:",
+		"typescript": "catalog:",
+		"@auth-provider/config": "workspace:*",
+		"@tanstack/react-query-devtools": "^5.91.1"
+	}
+}

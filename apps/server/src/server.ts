@@ -1,4 +1,3 @@
-import { env } from "@auth-provider/env/server";
 import { createBaseApp } from "@/core/app";
 
 export const startServer = () => {
@@ -19,11 +18,11 @@ export const startServer = () => {
 					description: "Returns the current authenticated user's information.",
 					tags: ["User"],
 				},
-			}
+			},
 		)
-		.listen(env.SERVER_PORT);
+		.listen({});
 
-	console.log(`🦊 Server is running at http://localhost:${env.SERVER_PORT}`);
+	console.log(`🦊 Server is running at ${app.server?.url}`);
 	return app;
 };
 

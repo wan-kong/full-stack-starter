@@ -15,6 +15,6 @@ const app = new Elysia()
 			body: t.Object({
 				files: t.Files(),
 			}),
-		}
+		},
 	)
 	.listen(3000);

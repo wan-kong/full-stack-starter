@@ -1,0 +1,24 @@
+import { env } from "@auth-provider/env/web";
+import { apiKeyClient } from "@better-auth/api-key/client";
+import {
+	adminClient,
+	lastLoginMethodClient,
+	magicLinkClient,
+	organizationClient,
+	twoFactorClient,
+	usernameClient,
+} from "better-auth/client/plugins";
+import { createAuthClient } from "better-auth/react";
+
+export const authClient = createAuthClient({
+	baseURL: env.NEXT_PUBLIC_SERVER_URL,
+	plugins: [
+		twoFactorClient(),
+		organizationClient(),
+		usernameClient(),
+		adminClient(),
+		apiKeyClient(),
+		lastLoginMethodClient(),
+		magicLinkClient(),
+	],
+});

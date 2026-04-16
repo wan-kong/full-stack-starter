@@ -1,27 +1,28 @@
 {
-  "name": "@auth-provider/auth",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
-  },
-  "scripts": {},
-  "dependencies": {
-    "@auth-provider/db": "workspace:*",
-    "@auth-provider/env": "workspace:*",
-    "@auth-provider/mail": "workspace:*",
-    "@better-auth/infra": "^0.1.14",
-    "@better-auth/api-key": "1.6.0",
-    "better-auth": "catalog:",
-    "@better-auth/prisma-adapter": "1.6.0",
-    "dotenv": "catalog:"
-  },
-  "devDependencies": {
-    "@auth-provider/config": "workspace:*",
-    "typescript": "catalog:"
-  }
+	"name": "@auth-provider/auth",
+	"version": "0.0.1",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@auth-provider/db": "workspace:*",
+		"@auth-provider/env": "workspace:*",
+		"@auth-provider/mail": "workspace:*",
+		"@better-auth/infra": "^0.1.14",
+		"@better-auth/api-key": "catalog:",
+		"better-auth": "catalog:",
+		"@better-auth/prisma-adapter": "1.6.0",
+		"dotenv": "catalog:"
+	},
+	"devDependencies": {
+		"@auth-provider/config": "workspace:*",
+		"typescript": "catalog:"
+	}
 }

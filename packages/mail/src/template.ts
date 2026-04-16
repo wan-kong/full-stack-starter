@@ -41,7 +41,7 @@ function renderEmail(markdown: string, brandColor?: string): RenderedEmail {
 export function sendVerificationEmail(
 	options: Omit<EmailOptions, "url"> & {
 		url: string;
-	}
+	},
 ): string {
 	const { to, name, url, brandColor, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
@@ -172,7 +172,7 @@ export function sendOrganizationInviteEmail(
 	options: EmailOptions & {
 		organizationName: string;
 		inviterName: string;
-	}
+	},
 ): string {
 	const {
 		to,
@@ -306,7 +306,7 @@ export function sendSecurityAlertEmail(
 	options: EmailOptions & {
 		alertType: string;
 		details?: string;
-	}
+	},
 ): string {
 	const { to, name, alertType, details, siteName, baseUrl } =
 		mergeConfig(options);

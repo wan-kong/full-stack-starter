@@ -20,7 +20,7 @@ new Elysia()
 				pepper: t.String(),
 			}))
 			// Add prefix
-			.prefix("decorator", "unstable")
+			.prefix("decorator", "unstable"),
 	)
 	.get("/mapped", ({ unstableRenamedProperty }) => unstableRenamedProperty)
 	.post("/pepper", ({ body }) => body, {

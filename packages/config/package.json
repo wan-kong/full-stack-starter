@@ -1,5 +1,5 @@
 {
-  "name": "@auth-provider/config",
-  "version": "0.0.0",
-  "private": true
+	"name": "@auth-provider/config",
+	"version": "0.0.1",
+	"private": true
 }

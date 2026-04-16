@@ -18,7 +18,7 @@ export const createBaseApp = () =>
 				methods: "*",
 				allowedHeaders: ["Content-Type", "Authorization"],
 				credentials: true,
-			})
+			}),
 		)
 		.use(betterAuthPlugin);
 

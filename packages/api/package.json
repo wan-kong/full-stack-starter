@@ -1,25 +1,26 @@
 {
-  "name": "@auth-provider/api",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
-  },
-  "scripts": {},
-  "dependencies": {
-    "@auth-provider/auth": "workspace:*",
-    "@auth-provider/env": "workspace:*",
-    "@auth-provider/server": "workspace:*",
-    "@elysiajs/eden": "1.4.9",
-    "dotenv": "catalog:"
-  },
-  "devDependencies": {
-    "@auth-provider/config": "workspace:*",
-    "elysia": "catalog:",
-    "typescript": "catalog:"
-  }
+	"name": "@auth-provider/api",
+	"type": "module",
+	"version": "0.0.1",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@auth-provider/auth": "workspace:*",
+		"@auth-provider/env": "workspace:*",
+		"@auth-provider/server": "workspace:*",
+		"@elysiajs/eden": "1.4.9",
+		"dotenv": "catalog:"
+	},
+	"devDependencies": {
+		"@auth-provider/config": "workspace:*",
+		"elysia": "catalog:",
+		"typescript": "catalog:"
+	}
 }

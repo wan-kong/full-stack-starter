@@ -17,7 +17,7 @@ export const createOpenAPIPlugin = async (app: Elysia) => {
 				components,
 				paths,
 			},
-		})
+		}),
 	);
 	return app;
 };
