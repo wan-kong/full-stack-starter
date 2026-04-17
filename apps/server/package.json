@@ -12,12 +12,13 @@
 		}
 	},
 	"scripts": {
-		"build": "tsdown",
+		"dev": "portless server bun run --hot src/server.ts",
+		"build": "bun run ./scripts/build.ts",
+		"tsdown": "tsdown",
 		"check-types": "tsc -b",
 		"compile": "bun run ./scripts/compile.ts",
 		"auth:generate": "bun x auth generate --config ../../packages/auth/src/index.ts --output ../../packages/db/src/prisma/schema/auth.prisma --yes",
-		"dev": "portless server bun run --hot src/server.ts",
-		"start": "bun run dist/index.js"
+		"start": "bun run ./dist/bun/index.js"
 	},
 	"dependencies": {
 		"@auth-provider/auth": "workspace:*",
@@ -28,8 +29,7 @@
 		"better-auth": "catalog:",
 		"dotenv": "catalog:",
 		"elysia": "catalog:",
-		"logixlysia": "^6.3.1",
-		"uglify-js": "^3.19.3"
+		"logixlysia": "^6.3.1"
 	},
 	"devDependencies": {
 		"@auth-provider/config": "workspace:*",

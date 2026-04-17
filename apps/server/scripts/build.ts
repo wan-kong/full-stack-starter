@@ -1,11 +1,9 @@
 import Bun from "bun";
 
-/**
- * TODO: Build with Bun
- */
 await Bun.build({
 	entrypoints: ["./src/index.ts"],
 	minify: false,
+	sourcemap: false,
 	target: "bun",
 	outdir: "./dist/bun",
 });

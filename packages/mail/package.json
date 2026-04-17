@@ -15,7 +15,7 @@
 		"@auth-provider/env": "workspace:*",
 		"dotenv": "catalog:",
 		"resend": "^6.10.0",
-		"emailmd": "^0.2.1"
+		"emailmd": "^0.3.0"
 	},
 	"devDependencies": {
 		"@auth-provider/config": "workspace:*",

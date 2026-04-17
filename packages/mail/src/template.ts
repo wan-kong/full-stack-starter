@@ -17,17 +17,11 @@ const DEFAULT_INFO: Omit<EmailOptions, "to" | "url"> = {
 	brandColor: "#2563eb",
 };
 
-interface RenderedEmail {
-	html: string;
-	meta: Record<string, unknown>;
-	text: string;
-}
-
 const mergeConfig = <T extends Partial<EmailOptions>>(options: T): T => {
 	return { ...DEFAULT_INFO, ...options };
 };
 
-function renderEmail(markdown: string, brandColor?: string): RenderedEmail {
+function renderEmail(markdown: string, brandColor?: string) {
 	return render(markdown, {
 		theme: {
 			brandColor: brandColor || DEFAULT_INFO.brandColor,
@@ -42,7 +36,7 @@ export function sendVerificationEmail(
 	options: Omit<EmailOptions, "url"> & {
 		url: string;
 	},
-): string {
+) {
 	const { to, name, url, brandColor, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -66,13 +60,13 @@ brand_color: "${brandColor}"
 :::
 `;
 
-	return renderEmail(markdown).html;
+	return renderEmail(markdown);
 }
 
 /**
  * Send magic link for passwordless login
  */
-export function sendMagicLinkEmail(options: EmailOptions): string {
+export function sendMagicLinkEmail(options: EmailOptions) {
 	const { to, name, url, brandColor, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -96,13 +90,13 @@ brand_color: "${brandColor}"
 :::
 `;
 
-	return renderEmail(markdown).html;
+	return renderEmail(markdown);
 }
 
 /**
  * Send password reset email
  */
-export function sendPasswordResetEmail(options: EmailOptions): string {
+export function sendPasswordResetEmail(options: EmailOptions) {
 	const { to, name, url, brandColor, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -126,13 +120,13 @@ brand_color: "${brandColor}"
 :::
 `;
 
-	return renderEmail(markdown).html;
+	return renderEmail(markdown);
 }
 
 /**
  * Send welcome email after email verification
  */
-export function sendWelcomeEmail(options: EmailOptions): string {
+export function sendWelcomeEmail(options: EmailOptions) {
 	const { to, name, brandColor, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -162,7 +156,7 @@ brand_color: "${brandColor}"
 :::
 `;
 
-	return renderEmail(markdown).html;
+	return renderEmail(markdown);
 }
 
 /**
@@ -173,7 +167,7 @@ export function sendOrganizationInviteEmail(
 		organizationName: string;
 		inviterName: string;
 	},
-): string {
+) {
 	const {
 		to,
 		name,
@@ -206,13 +200,13 @@ brand_color: "${brandColor}"
 :::
 `;
 
-	return renderEmail(markdown).html;
+	return renderEmail(markdown);
 }
 
 /**
  * Send email change notification
  */
-export function sendEmailChangeNotification(options: EmailOptions): string {
+export function sendEmailChangeNotification(options: EmailOptions) {
 	const { to, name, url, brandColor, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -236,13 +230,13 @@ brand_color: "${brandColor}"
 :::
 `;
 
-	return renderEmail(markdown).html;
+	return renderEmail(markdown);
 }
 
 /**
  * Send account deletion confirmation email
  */
-export function sendAccountDeletionEmail(options: EmailOptions): string {
+export function sendAccountDeletionEmail(options: EmailOptions) {
 	const { to, name, url, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -266,13 +260,13 @@ brand_color: "#dc2626"
 :::
 `;
 
-	return renderEmail(markdown, "#dc2626").html;
+	return renderEmail(markdown, "#dc2626");
 }
 
 /**
  * Send two-factor authentication setup email
  */
-export function sendTwoFactorSetupEmail(options: EmailOptions): string {
+export function sendTwoFactorSetupEmail(options: EmailOptions) {
 	const { to, name, siteName, baseUrl } = mergeConfig(options);
 	const displayName = name || to.split("@")[0];
 
@@ -296,7 +290,7 @@ brand_color: "#16a34a"
 :::
 `;
 
-	return renderEmail(markdown, "#16a34a").html;
+	return renderEmail(markdown, "#16a34a");
 }
 
 /**
@@ -307,7 +301,7 @@ export function sendSecurityAlertEmail(
 		alertType: string;
 		details?: string;
 	},
-): string {
+) {
 	const { to, name, alertType, details, siteName, baseUrl } =
 		mergeConfig(options);
 	const displayName = name || to.split("@")[0];
@@ -336,5 +330,5 @@ ${details ? details : ""}
 :::
 `;
 
-	return renderEmail(markdown, "#f59e0b").html;
+	return renderEmail(markdown, "#f59e0b");
 }

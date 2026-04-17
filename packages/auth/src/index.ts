@@ -41,13 +41,14 @@ export function createAuth() {
 		emailVerification: {
 			sendOnSignIn: true,
 			async sendVerificationEmail({ user, token }) {
+				const { html } = await sendVerificationEmail({
+					to: user.email,
+					url: `${env.BETTER_AUTH_URL}/verify-email?token=${token}`,
+				});
 				await sendEmail({
 					to: user.email,
 					subject: "验证您的邮箱地址",
-					html: sendVerificationEmail({
-						to: user.email,
-						url: `${env.BETTER_AUTH_URL}/verify-email?token=${token}`,
-					}),
+					html: html,
 				});
 			},
 		},
@@ -72,13 +73,14 @@ export function createAuth() {
 			lastLoginMethod(),
 			magicLink({
 				async sendMagicLink({ email, url }) {
+					const { html } = await sendMagicLinkEmail({
+						to: email,
+						url,
+					});
 					await sendEmail({
 						to: email,
 						subject: "您的登录链接",
-						html: sendMagicLinkEmail({
-							to: email,
-							url,
-						}),
+						html: html,
 					});
 				},
 			}),

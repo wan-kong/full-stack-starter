@@ -5,7 +5,7 @@ import { loggerPlugin } from "../plugins/logger";
 import { createOpenAPIPlugin } from "../plugins/openapi";
 
 /**
- * Base app with all common plugins
+ * Base app with base plugins
  * Can be reused across multiple services/routes
  */
 export const createBaseApp = () =>
