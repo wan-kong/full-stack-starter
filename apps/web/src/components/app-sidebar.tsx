@@ -1,43 +1,63 @@
 "use client";
 
+import { Kbd } from "@auth-provider/ui/components/kbd";
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarHeader,
-	SidebarRail,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarTrigger,
+	useSidebar,
 } from "@auth-provider/ui/components/sidebar";
-import { ShieldCheckIcon } from "lucide-react";
-import Link from "next/link";
+import { cn } from "@auth-provider/ui/lib/utils";
+import { SearchIcon } from "lucide-react";
 import { useSession } from "@/components/auth-guard";
 import { NavAdmin } from "@/components/nav-admin";
 import { NavMain } from "@/components/nav-main";
 import { UserMenu } from "@/components/user-menu";
 import { isAdminUser } from "@/lib/auth-utils";
-import { routes } from "@/lib/routes";
+import { getMetaKey } from "@/lib/utils";
+import { Logo } from "./base/logo/logo";
+import { LogoText } from "./base/logo/logo-text";
 
 export const AppSidebar = () => {
 	const { user } = useSession();
+	const { open } = useSidebar();
+
+	const metaKey = getMetaKey();
 
 	return (
-		<Sidebar variant="inset" collapsible="icon">
+		<Sidebar variant="sidebar" collapsible="icon">
 			<SidebarHeader>
-				<Link
-					href={routes.dashboard}
-					className="flex items-center gap-3 rounded-none border border-sidebar-border bg-sidebar-accent px-3 py-3"
+				<div
+					className={cn("flex h-12 items-center justify-between px-2", {
+						"justify-center px-0": !open,
+					})}
 				>
-					<div className="flex size-8 items-center justify-center rounded-none bg-sidebar-primary text-sidebar-primary-foreground">
-						<ShieldCheckIcon className="size-4" />
+					<div className="flex items-center gap-2 text-primary group-data-[state=collapsed]:hidden">
+						<Logo />
+						<LogoText />
 					</div>
-					<div className="grid flex-1 text-left group-data-[collapsible=icon]:hidden">
-						<span className="font-medium text-sidebar-foreground text-sm">
-							Auth Provider
-						</span>
-						<span className="text-sidebar-foreground/70 text-xs">
-							统一身份控制台
-						</span>
-					</div>
-				</Link>
+					<SidebarTrigger />
+				</div>
+				<SidebarMenu>
+					<SidebarMenuItem>
+						<SidebarMenuButton
+							tooltip={`Search ${metaKey}+K`}
+							variant="outline"
+							className="flex items-center justify-between gap-2"
+							onClick={() => {}}
+						>
+							<span className="flex items-center gap-2">
+								<SearchIcon className="h-4 w-4" /> Search
+							</span>
+							<Kbd className="whitespace-nowrap">{metaKey} K</Kbd>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				</SidebarMenu>
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain />
@@ -46,7 +66,6 @@ export const AppSidebar = () => {
 			<SidebarFooter>
 				<UserMenu />
 			</SidebarFooter>
-			<SidebarRail />
 		</Sidebar>
 	);
 };

@@ -83,13 +83,17 @@ export const UserMenu = () => {
 							</div>
 						</DropdownMenuLabel>
 						<DropdownMenuGroup>
-							<DropdownMenuItem render={<Link href={routes.settings} />}>
-								<UserIcon />
-								个人资料
+							<DropdownMenuItem>
+								<Link className="flex" href={routes.settings}>
+									<UserIcon />
+									个人资料
+								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem render={<Link href={routes.settings} />}>
-								<Settings2Icon />
-								账号设置
+							<DropdownMenuItem>
+								<Link className="flex" href={routes.settings}>
+									<Settings2Icon />
+									账号设置
+								</Link>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuGroup>

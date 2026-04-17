@@ -3,7 +3,6 @@
 import {
 	SidebarGroup,
 	SidebarGroupContent,
-	SidebarGroupLabel,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
@@ -18,7 +17,6 @@ export const NavMain = () => {
 
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel>工作区</SidebarGroupLabel>
 			<SidebarGroupContent>
 				<SidebarMenu>
 					{mainNavItems.map((item) => {

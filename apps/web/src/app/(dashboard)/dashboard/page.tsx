@@ -11,6 +11,7 @@ import {
 import { cn } from "@auth-provider/ui/lib/utils";
 import {
 	CalendarDaysIcon,
+	ChevronRightIcon,
 	KeyRoundIcon,
 	MoveRightIcon,
 	ShieldCheckIcon,
@@ -19,7 +20,7 @@ import {
 import Link from "next/link";
 import { useSession } from "@/components/auth-guard";
 import { PageHeader } from "@/components/page-header";
-import type { AppUser } from "@/lib/auth-utils";
+import { authClient } from "@/lib/auth-client";
 import { routes } from "@/lib/routes";
 
 const formatDate = (value: Date | string | undefined) => {
@@ -34,9 +35,8 @@ const formatDate = (value: Date | string | undefined) => {
 
 export default function DashboardPage() {
 	const { user } = useSession();
-	const lastLoginMethod = (
-		user as AppUser & { lastLoginMethod?: string | null }
-	).lastLoginMethod;
+
+	const lastLoginMethod = authClient.getLastUsedLoginMethod();
 
 	const cards = [
 		{
@@ -47,7 +47,7 @@ export default function DashboardPage() {
 		},
 		{
 			title: "最近登录方式",
-			value: lastLoginMethod ?? "未记录",
+			value: lastLoginMethod?.toLocaleUpperCase() ?? "未记录",
 			description: "用于识别回流入口",
 			icon: MoveRightIcon,
 		},
@@ -69,10 +69,13 @@ export default function DashboardPage() {
 		<div className="flex flex-1 flex-col">
 			<PageHeader
 				title={`你好，${user.name}`}
-				description="这里汇总了账号状态、安全能力与管理入口，方便你快速进入下一步操作。"
 				actions={
-					<Link className={cn(buttonVariants())} href={routes.settings}>
+					<Link
+						className={cn(buttonVariants(), "group")}
+						href={routes.settings}
+					>
 						前往设置
+						<ChevronRightIcon className="size-3 transition-all group-hover:translate-x-0.5" />
 					</Link>
 				}
 			/>
@@ -104,7 +107,7 @@ export default function DashboardPage() {
 						</CardHeader>
 						<CardContent className="grid gap-3 sm:grid-cols-2">
 							<Link
-								href={routes.security}
+								href={`${routes.settings}?tab=security`}
 								className={cn(
 									buttonVariants({
 										variant: "outline",
@@ -116,7 +119,7 @@ export default function DashboardPage() {
 								<ShieldCheckIcon />
 							</Link>
 							<Link
-								href={routes.apiKeys}
+								href={`${routes.settings}?tab=apikey`}
 								className={cn(
 									buttonVariants({
 										variant: "outline",

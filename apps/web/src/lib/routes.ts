@@ -8,8 +8,6 @@ export const routes = {
 	signUp: route("/sign-up"),
 	dashboard: route("/dashboard"),
 	settings: route("/settings"),
-	security: route("/settings/security"),
-	apiKeys: route("/settings/api-keys"),
 	adminUsers: route("/admin/users"),
 	adminOrganizations: route("/admin/organizations"),
 };

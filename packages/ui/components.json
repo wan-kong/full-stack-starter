@@ -16,5 +16,8 @@
 		"hooks": "@auth-provider/ui/hooks",
 		"lib": "@auth-provider/ui/lib",
 		"ui": "@auth-provider/ui/components"
-	}
+	},
+	"menuColor": "default",
+	"menuAccent": "subtle",
+	"rtl": false
 }

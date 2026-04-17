@@ -8,8 +8,6 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@auth-provider/api": "workspace:*",
-		"@auth-provider/auth": "workspace:*",
 		"@auth-provider/env": "workspace:*",
 		"@auth-provider/ui": "workspace:*",
 		"@better-auth/api-key": "catalog:",
@@ -22,6 +20,7 @@
 		"lucide-react": "catalog:",
 		"next": "catalog:",
 		"next-themes": "catalog:",
+		"nuqs": "^2.8.9",
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"sonner": "catalog:",
