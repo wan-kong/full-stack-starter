@@ -1,0 +1,28 @@
+{
+	"name": "@repo/auth",
+	"version": "0.0.1",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@repo/db": "workspace:*",
+		"@repo/env": "workspace:*",
+		"@repo/mail": "workspace:*",
+		"@better-auth/infra": "^0.1.14",
+		"@better-auth/api-key": "catalog:",
+		"better-auth": "catalog:",
+		"@better-auth/prisma-adapter": "1.6.0",
+		"dotenv": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/config": "workspace:*",
+		"typescript": "catalog:"
+	}
+}

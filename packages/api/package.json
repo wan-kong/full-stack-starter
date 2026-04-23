@@ -1,0 +1,26 @@
+{
+	"name": "@repo/api",
+	"type": "module",
+	"version": "0.0.1",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@repo/auth": "workspace:*",
+		"@repo/env": "workspace:*",
+		"@repo/server": "workspace:*",
+		"@elysiajs/eden": "1.4.9",
+		"dotenv": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/config": "workspace:*",
+		"elysia": "catalog:",
+		"typescript": "catalog:"
+	}
+}

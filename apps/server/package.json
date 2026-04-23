@@ -1,0 +1,40 @@
+{
+	"name": "@repo/server",
+	"type": "module",
+	"version": "0.0.1",
+	"main": "src/index.ts",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./server": {
+			"default": "./src/server.ts"
+		}
+	},
+	"scripts": {
+		"dev": "portless server bun run --hot src/server.ts",
+		"build": "bun run ./scripts/build.ts",
+		"tsdown": "tsdown",
+		"check-types": "tsc -b",
+		"compile": "bun run ./scripts/compile.ts",
+		"auth:generate": "bun x auth generate --config ../../packages/auth/src/index.ts --output ../../packages/db/src/prisma/schema/auth.prisma --yes",
+		"start": "bun run ./dist/bun/index.js"
+	},
+	"dependencies": {
+		"@repo/auth": "workspace:*",
+		"@repo/db": "workspace:*",
+		"@repo/env": "workspace:*",
+		"@elysiajs/cors": "^1.4.1",
+		"@elysiajs/openapi": "^1.4.14",
+		"better-auth": "catalog:",
+		"dotenv": "catalog:",
+		"elysia": "catalog:",
+		"logixlysia": "^6.3.1"
+	},
+	"devDependencies": {
+		"@repo/config": "workspace:*",
+		"@types/bun": "catalog:",
+		"tsdown": "^0.21.8",
+		"typescript": "catalog:"
+	}
+}

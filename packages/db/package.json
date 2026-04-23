@@ -1,0 +1,32 @@
+{
+	"name": "@repo/db",
+	"version": "0.0.1",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {
+		"db:generate": "prisma generate",
+		"db:migrate": "prisma migrate dev",
+		"postinstall": "prisma generate",
+		"db:studio": "prisma studio"
+	},
+	"dependencies": {
+		"@repo/env": "workspace:*",
+		"dotenv": "catalog:",
+		"@prisma/client": "catalog:",
+		"@prisma/adapter-mariadb": "^7.2.0",
+		"prismabox": "1.1.26"
+	},
+	"devDependencies": {
+		"@repo/config": "workspace:*",
+		"prisma": "^7.2.0",
+		"elysia": "catalog:",
+		"typescript": "catalog:"
+	}
+}

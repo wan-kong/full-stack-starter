@@ -1,0 +1,24 @@
+{
+	"name": "@repo/mail",
+	"version": "0.0.1",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./template": {
+			"default": "./src/template.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@repo/env": "workspace:*",
+		"dotenv": "catalog:",
+		"resend": "^6.10.0",
+		"emailmd": "^0.3.0"
+	},
+	"devDependencies": {
+		"@repo/config": "workspace:*",
+		"typescript": "catalog:"
+	}
+}
