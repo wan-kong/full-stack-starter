@@ -8,9 +8,7 @@ import {
 	EmptyTitle,
 } from "@auth-provider/ui/components/empty";
 import { ShieldAlertIcon } from "lucide-react";
-
-import { isAdminUser } from "@/lib/auth-utils";
-
+import { isAdminUser } from "@/lib/auth-client";
 import { useSession } from "./auth-guard";
 
 export const AdminGuard = ({ children }: { children: React.ReactNode }) => {

@@ -137,7 +137,6 @@ export default function AdminUsersPage() {
 		<div className="flex flex-1 flex-col">
 			<PageHeader
 				title="用户管理"
-				description="搜索、查看并维护系统用户状态，包括角色调整、封禁与删除。"
 				actions={
 					<Input
 						className="w-64"

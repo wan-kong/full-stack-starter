@@ -53,11 +53,15 @@ export default function SettingsPage() {
 						))}
 					</TabsList>
 					<TabsPanels>
-						{settingsTabs.map((tab) => (
-							<TabsPanel key={tab.key} value={tab.key}>
-								{tab.panel()}
-							</TabsPanel>
-						))}
+						{settingsTabs.map((tab) => {
+							const Panel = tab.panel;
+
+							return (
+								<TabsPanel key={tab.key} value={tab.key}>
+									<Panel />
+								</TabsPanel>
+							);
+						})}
 					</TabsPanels>
 				</Tabs>
 			</div>

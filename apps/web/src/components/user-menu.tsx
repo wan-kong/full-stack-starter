@@ -1,17 +1,17 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@auth-provider/ui/components/avatar";
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
-	DropdownMenuTrigger,
-} from "@auth-provider/ui/components/dropdown-menu";
+	Menu,
+	MenuGroup,
+	MenuGroupLabel,
+	MenuItem,
+	MenuPanel,
+	MenuSeparator,
+	MenuSubmenu,
+	MenuSubmenuPanel,
+	MenuSubmenuTrigger,
+	MenuTrigger,
+} from "@auth-provider/ui/components/animate-ui/components/base/menu";
 import {
 	SidebarMenu,
 	SidebarMenuButton,
@@ -19,6 +19,7 @@ import {
 } from "@auth-provider/ui/components/sidebar";
 import { useQueryClient } from "@tanstack/react-query";
 import {
+	ChevronsUpDownIcon,
 	LogOutIcon,
 	MonitorCogIcon,
 	MoonIcon,
@@ -26,23 +27,15 @@ import {
 	SunIcon,
 	UserIcon,
 } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 
 import { useSession } from "@/components/auth-guard";
+import { UserMenuProfile } from "@/components/user-menu-profile";
 import { authClient } from "@/lib/auth-client";
 import { getErrorMessage } from "@/lib/errors";
 import { routes } from "@/lib/routes";
-
-const getInitials = (name: string) =>
-	name
-		.split(/\s+/)
-		.map((part) => part[0])
-		.join("")
-		.slice(0, 2)
-		.toUpperCase();
 
 export const UserMenu = () => {
 	const router = useRouter();
@@ -55,7 +48,7 @@ export const UserMenu = () => {
 			await authClient.signOut();
 			queryClient.clear();
 			toast.success("已退出登录");
-			router.push(routes.signIn);
+			router.push(routes.home);
 		} catch (error) {
 			toast.error(getErrorMessage(error));
 		}
@@ -64,71 +57,70 @@ export const UserMenu = () => {
 	return (
 		<SidebarMenu>
 			<SidebarMenuItem>
-				<DropdownMenu>
-					<DropdownMenuTrigger
+				<Menu>
+					<MenuTrigger
 						render={
-							<SidebarMenuButton size="lg">
-								<Avatar className="size-8 rounded-none">
-									<AvatarFallback>{getInitials(user.name)}</AvatarFallback>
-								</Avatar>
-								<span>{user.name}</span>
-							</SidebarMenuButton>
+							<SidebarMenuButton
+								size="lg"
+								className="data-[popup-open=true]:bg-sidebar-accent data-[popup-open=true]:text-sidebar-accent-foreground"
+							/>
 						}
-					/>
-					<DropdownMenuContent side="top" align="end" className="w-64">
-						<DropdownMenuLabel>
-							<div className="flex flex-col gap-1">
-								<p className="font-medium text-foreground">{user.name}</p>
-								<p className="truncate">{user.email}</p>
-							</div>
-						</DropdownMenuLabel>
-						<DropdownMenuGroup>
-							<DropdownMenuItem>
-								<Link className="flex" href={routes.settings}>
-									<UserIcon />
-									个人资料
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link className="flex" href={routes.settings}>
-									<Settings2Icon />
-									账号设置
-								</Link>
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-						<DropdownMenuGroup>
-							<DropdownMenuSub>
-								<DropdownMenuSubTrigger>
-									<MonitorCogIcon />
+					>
+						<UserMenuProfile
+							name={user.name}
+							email={user.email}
+							className="flex-1"
+						/>
+						<ChevronsUpDownIcon className="size-4 shrink-0 text-muted-foreground" />
+					</MenuTrigger>
+					<MenuPanel side="right" align="end" className="w-64">
+						<MenuGroup>
+							<MenuGroupLabel className="px-2 py-2">
+								<UserMenuProfile name={user.name} email={user.email} />
+							</MenuGroupLabel>
+						</MenuGroup>
+						<MenuSeparator />
+						<MenuGroup>
+							<MenuItem onClick={() => router.push(routes.settings)}>
+								<UserIcon />
+								个人资料
+							</MenuItem>
+							<MenuItem onClick={() => router.push(routes.settings)}>
+								<Settings2Icon />
+								账号设置
+							</MenuItem>
+						</MenuGroup>
+						<MenuGroup>
+							<MenuSubmenu>
+								<MenuSubmenuTrigger className="gap-2">
+									<MonitorCogIcon className="size-4 text-muted-foreground" />
 									主题
-								</DropdownMenuSubTrigger>
-								<DropdownMenuSubContent>
-									<DropdownMenuItem onClick={() => setTheme("light")}>
+								</MenuSubmenuTrigger>
+								<MenuSubmenuPanel>
+									<MenuItem onClick={() => setTheme("light")}>
 										<SunIcon />
 										浅色
-									</DropdownMenuItem>
-									<DropdownMenuItem onClick={() => setTheme("dark")}>
+									</MenuItem>
+									<MenuItem onClick={() => setTheme("dark")}>
 										<MoonIcon />
 										深色
-									</DropdownMenuItem>
-									<DropdownMenuItem onClick={() => setTheme("system")}>
+									</MenuItem>
+									<MenuItem onClick={() => setTheme("system")}>
 										<MonitorCogIcon />
 										跟随系统
-									</DropdownMenuItem>
-								</DropdownMenuSubContent>
-							</DropdownMenuSub>
-						</DropdownMenuGroup>
-						<DropdownMenuGroup>
-							<DropdownMenuItem
-								variant="destructive"
-								onClick={() => void signOut()}
-							>
+									</MenuItem>
+								</MenuSubmenuPanel>
+							</MenuSubmenu>
+						</MenuGroup>
+						<MenuSeparator />
+						<MenuGroup>
+							<MenuItem variant="destructive" onClick={() => void signOut()}>
 								<LogOutIcon />
 								退出登录
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-					</DropdownMenuContent>
-				</DropdownMenu>
+							</MenuItem>
+						</MenuGroup>
+					</MenuPanel>
+				</Menu>
 			</SidebarMenuItem>
 		</SidebarMenu>
 	);

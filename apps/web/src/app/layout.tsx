@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "../index.css";
 
+import { Toaster } from "@auth-provider/ui/components/sonner";
+import { TooltipProvider } from "@auth-provider/ui/components/tooltip";
 import { cn } from "@auth-provider/ui/lib/utils";
-import { Providers } from "@/components/providers";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "next-themes";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+
+import { queryClient } from "@/lib/query-client";
 
 const jetbrainsMono = JetBrains_Mono({
 	subsets: ["latin"],
@@ -50,7 +56,21 @@ export default function RootLayout({
 			)}
 		>
 			<body className="flex min-h-full flex-col">
-				<Providers>{children}</Providers>
+				<NuqsAdapter>
+					<QueryClientProvider client={queryClient}>
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="system"
+							enableSystem
+							disableTransitionOnChange
+						>
+							<TooltipProvider>
+								{children}
+								<Toaster richColors position="top-right" />
+							</TooltipProvider>
+						</ThemeProvider>
+					</QueryClientProvider>
+				</NuqsAdapter>
 			</body>
 		</html>
 	);

@@ -1,7 +1,8 @@
 import { createBaseApp } from "@/core/app";
 
-export const startServer = () => {
-	const app = createBaseApp()
+export const startServer = async () => {
+	const app = await createBaseApp();
+	app
 		.get("/", () => {
 			return "OK, this Page is working with Elysia!";
 		})

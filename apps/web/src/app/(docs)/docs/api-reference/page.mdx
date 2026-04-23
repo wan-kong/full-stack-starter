@@ -1,0 +1,87 @@
+# API Reference
+
+The Auth Provider API follows REST conventions. All requests require authentication
+unless stated otherwise.
+
+## Base URL
+
+```
+https://your-domain.com/api
+```
+
+## Authentication
+
+All API requests must include a session token in the `Authorization` header:
+
+```
+Authorization: Bearer <session-token>
+```
+
+## Endpoints
+
+### POST /auth/sign-in
+
+Authenticate a user with email and password.
+
+**Request Body:**
+
+| Field    | Type   | Required | Description          |
+| -------- | ------ | -------- | -------------------- |
+| email    | string | Yes      | User email address   |
+| password | string | Yes      | User password        |
+
+**Response:**
+
+```json
+{
+  "user": {
+    "id": "usr_abc123",
+    "email": "user@example.com",
+    "name": "John Doe"
+  },
+  "session": {
+    "id": "ses_xyz789",
+    "expiresAt": "2026-05-20T00:00:00Z"
+  }
+}
+```
+
+### GET /auth/session
+
+Retrieve the current session details.
+
+**Response:**
+
+```json
+{
+  "session": {
+    "id": "ses_xyz789",
+    "userId": "usr_abc123",
+    "expiresAt": "2026-05-20T00:00:00Z"
+  }
+}
+```
+
+### POST /auth/sign-out
+
+Invalidate the current session.
+
+**Response:** `204 No Content`
+
+## Error Handling
+
+All errors follow a consistent format:
+
+```json
+{
+  "error": {
+    "code": "INVALID_CREDENTIALS",
+    "message": "The email or password is incorrect."
+  }
+}
+```
+
+## Rate Limiting
+
+API requests are limited to 100 requests per minute per session. Exceeding the limit
+returns a `429 Too Many Requests` response.

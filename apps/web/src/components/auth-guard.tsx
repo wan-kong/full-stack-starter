@@ -3,9 +3,8 @@
 import { Spinner } from "@auth-provider/ui/components/spinner";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useEffect } from "react";
-
+import type { AppSession } from "@/lib/auth-client";
 import { authClient } from "@/lib/auth-client";
-import type { AppSession } from "@/lib/auth-utils";
 import { routes, withRedirect } from "@/lib/routes";
 
 const SessionContext = createContext<AppSession | null>(null);

@@ -1,17 +1,24 @@
 import cors from "@elysiajs/cors";
+import openapi from "@elysiajs/openapi";
 import { Elysia } from "elysia";
-import { betterAuthPlugin } from "../plugins/auth";
+import { betterAuthPlugin, OpenAPI } from "../plugins/auth";
 import { loggerPlugin } from "../plugins/logger";
-import { createOpenAPIPlugin } from "../plugins/openapi";
 
 /**
  * Base app with base plugins
  * Can be reused across multiple services/routes
  */
-export const createBaseApp = () =>
+export const createBaseApp = async () =>
 	new Elysia({ name: "base-app" })
 		.use(loggerPlugin)
-		.use(createOpenAPIPlugin)
+		.use(
+			openapi({
+				documentation: {
+					components: await OpenAPI.components,
+					paths: await OpenAPI.getPaths(),
+				},
+			}),
+		)
 		.use(
 			cors({
 				origin: true,

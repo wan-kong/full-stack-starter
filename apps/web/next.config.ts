@@ -1,7 +1,9 @@
 import "@auth-provider/env/web";
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+	pageExtensions: ["ts", "tsx", "md", "mdx"],
 	typedRoutes: true,
 	reactCompiler: true,
 	transpilePackages: ["@auth-provider/ui"],
@@ -15,4 +17,9 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default nextConfig;
+export default createMDX({
+	extension: /\.(md|mdx)$/,
+	options: {
+		remarkPlugins: ["remark-gfm"],
+	},
+})(nextConfig);

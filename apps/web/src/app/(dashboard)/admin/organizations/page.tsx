@@ -97,7 +97,6 @@ export default function AdminOrganizationsPage() {
 		<div className="flex flex-1 flex-col">
 			<PageHeader
 				title="组织管理"
-				description="查看当前账号可访问的组织，并快速创建新的协作空间。"
 				actions={
 					<Button onClick={() => setOpen(true)}>
 						<PlusIcon />

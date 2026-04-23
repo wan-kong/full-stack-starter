@@ -1,17 +1,17 @@
 import { getSessionCookie } from "better-auth/cookies";
+import type { Route } from "next";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-
 import { routes, withRedirect } from "@/lib/routes";
 
-const publicAuthPaths = new Set([routes.signIn, routes.signUp]);
-const protectedPrefixes = [routes.dashboard, routes.settings, "/admin"];
+const publicAuthPaths = new Set([routes.signIn, routes.signUp, routes.home]);
+const protectedPrefixes = ["/dashboard", "/admin", "/settings"];
 
 export function proxy(request: NextRequest) {
-	const pathname = request.nextUrl.pathname;
+	const pathname = request.nextUrl.pathname as Route;
 	const hasSession = Boolean(getSessionCookie(request));
 
-	if (hasSession && publicAuthPaths.has(pathname as typeof routes.signIn)) {
+	if (hasSession && publicAuthPaths.has(pathname)) {
 		return NextResponse.redirect(new URL(routes.dashboard, request.url));
 	}
 
@@ -35,5 +35,6 @@ export const config = {
 		"/admin/:path*",
 		"/sign-in",
 		"/sign-up",
+		"/",
 	],
 };

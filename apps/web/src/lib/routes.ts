@@ -1,6 +1,6 @@
 import type { Route } from "next";
 
-const route = <T extends string>(value: T) => value as Route<T>;
+const route = <T extends Route>(value: T) => value as Route<T>;
 
 export const routes = {
 	home: route("/"),

@@ -1,0 +1,51 @@
+# Getting Started
+
+Learn how to integrate Auth Provider into your application.
+
+## Prerequisites
+
+- Node.js 18+ or Bun
+- A project that needs authentication
+
+## Installation
+
+Install the Auth Provider SDK in your project:
+
+```bash
+bun add @auth-provider/sdk
+```
+
+## Configuration
+
+Create an auth client instance:
+
+```ts
+import { createAuthClient } from "@auth-provider/sdk";
+
+const auth = createAuthClient({
+  baseURL: "https://your-domain.com",
+});
+```
+
+## Sign In
+
+Use the client to authenticate users:
+
+```ts
+const result = await auth.signIn.email({
+  email: "user@example.com",
+  password: "secure-password",
+});
+
+if (result.error) {
+  console.error("Sign in failed:", result.error);
+} else {
+  console.log("Welcome!", result.data.user);
+}
+```
+
+## Next Steps
+
+- [API Reference](/docs/api-reference) — explore all available endpoints
+- Configure OAuth providers for social login
+- Set up two-factor authentication

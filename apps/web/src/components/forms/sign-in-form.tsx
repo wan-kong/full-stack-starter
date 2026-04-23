@@ -160,11 +160,10 @@ export const SignInForm = () => {
 						{form.state.isSubmitting ? <Spinner className="size-4" /> : null}
 						登录
 					</Button>
-
 					<div className="flex flex-col gap-3">
 						<Button
 							type="button"
-							variant={lastMethod === "social:github" ? "default" : "outline"}
+							variant={lastMethod === "github" ? "default" : "outline"}
 							onClick={() =>
 								authClient.signIn.social({
 									provider: "github",
