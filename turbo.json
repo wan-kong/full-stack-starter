@@ -19,21 +19,34 @@
 		},
 		"auth:generate": {
 			"cache": false,
-			"persistent": true
+			"env": [
+				"DATABASE_URL",
+				"BETTER_AUTH_SECRET",
+				"BETTER_AUTH_URL",
+				"BETTER_AUTH_API_KEY",
+				"RESEND_SEND_EMAIL",
+				"RESEND_API_KEY",
+				"GITHUB_CLIENT_ID",
+				"GITHUB_CLIENT_SECRET"
+			]
 		},
 		"db:push": {
-			"cache": false
+			"cache": false,
+			"env": ["DATABASE_URL"]
 		},
 		"db:generate": {
-			"cache": false
+			"cache": false,
+			"env": ["DATABASE_URL"]
 		},
 		"db:migrate": {
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"env": ["DATABASE_URL"]
 		},
 		"db:studio": {
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"env": ["DATABASE_URL"]
 		}
 	}
 }

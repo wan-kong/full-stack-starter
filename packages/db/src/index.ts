@@ -1,21 +1,41 @@
-import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { env } from "@repo/env/server";
-import { PrismaClient } from "./prisma/generated/client";
+import { drizzle } from "drizzle-orm/mysql2";
+import mysql from "mysql2/promise";
+import * as schema from "./schema";
+import {
+	account,
+	apikey,
+	invitation,
+	member,
+	organization,
+	session,
+	twoFactor,
+	user,
+	verification,
+} from "./schema";
 
-export function createPrismaClient() {
-	const databaseUrl: string = env.DATABASE_URL;
-	const url: URL = new URL(databaseUrl);
-	const connectionConfig = {
-		host: url.hostname,
-		port: Number.parseInt(url.port || "3306", 10),
-		user: url.username,
-		password: url.password,
-		database: url.pathname.slice(1),
-	};
+export const authSchema = {
+	user,
+	session,
+	account,
+	verification,
+	twoFactor,
+	organization,
+	member,
+	invitation,
+	apikey,
+} as const;
 
-	const adapter = new PrismaMariaDb(connectionConfig);
-	return new PrismaClient({ adapter });
+export function createDbClient(databaseUrl = env.DATABASE_URL) {
+	const pool = mysql.createPool(databaseUrl);
+
+	return drizzle(pool, {
+		schema,
+		mode: "default",
+	});
 }
 
-const prisma = createPrismaClient();
-export default prisma;
+const db = createDbClient();
+
+export { db, schema };
+export default db;

@@ -30,7 +30,7 @@
 			"!.claude",
 			"!.agents",
 			"!packages/ui/src/components",
-			"!packages/db/src/prisma/generated"
+			"!packages/db/src/drizzle/migrations"
 		]
 	},
 	"formatter": {

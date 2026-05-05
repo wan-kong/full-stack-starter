@@ -1,6 +1,6 @@
 # FullStackStarter
 
-一个基于 Bun + Turborepo 的全栈认证脚手架，包含 Web 管理端、Elysia API、Better Auth、Prisma(MySQL) 与共享 UI/配置包。
+一个基于 Bun + Turborepo 的全栈认证脚手架，包含 Web 管理端、Elysia API、Better Auth、Drizzle(MySQL) 与共享 UI/配置包。
 
 ## 技术栈
 
@@ -9,7 +9,7 @@
 - Frontend: Next.js 16 (App Router) + React 19 + Tailwind CSS 4
 - Backend: Elysia
 - Auth: Better Auth（含 GitHub OAuth、2FA、API Key 扩展）
-- Database: Prisma + MySQL (MariaDB adapter)
+- Database: Drizzle ORM + MySQL
 - Shared Packages: `@repo/ui` / `@repo/env` / `@repo/api` / `@repo/auth`
 - Code Quality: Ultracite + Biome + TypeScript
 
@@ -24,7 +24,7 @@ FullStackStarter/
 │   ├── api/         # API 客户端封装（eden treaty）
 │   ├── auth/        # Better Auth 配置与逻辑
 │   ├── config/      # 共享 tsconfig 等配置
-│   ├── db/          # Prisma schema / migrate / studio
+│   ├── db/          # Drizzle schema / migrations / studio
 │   ├── env/         # 环境变量校验（server/web）
 │   ├── mail/        # 邮件模板与发送
 │   └── ui/          # 共享组件库
@@ -88,9 +88,9 @@ bun run dev
 - `bun run check-types`: 运行工作区类型检查
 - `bun run dev:server`: 仅启动 `apps/server`
 - `bun run auth:generate`: 根据 Better Auth 配置生成 auth schema
-- `bun run db:generate`: Prisma generate
-- `bun run db:migrate`: Prisma migrate dev
-- `bun run db:studio`: Prisma Studio
+- `bun run db:generate`: Drizzle Kit generate
+- `bun run db:migrate`: Drizzle Kit migrate
+- `bun run db:studio`: Drizzle Studio
 - `bun run check`: 代码检查
 - `bun run fix`: 自动修复
 

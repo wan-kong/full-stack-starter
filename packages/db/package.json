@@ -11,21 +11,20 @@
 		}
 	},
 	"scripts": {
-		"db:generate": "prisma generate",
-		"db:migrate": "prisma migrate dev",
-		"postinstall": "prisma generate",
-		"db:studio": "prisma studio"
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
 		"@repo/env": "workspace:*",
 		"dotenv": "catalog:",
-		"@prisma/client": "catalog:",
-		"@prisma/adapter-mariadb": "^7.2.0",
-		"prismabox": "1.1.26"
+		"drizzle-orm": "catalog:",
+		"mysql2": "catalog:"
 	},
 	"devDependencies": {
 		"@repo/config": "workspace:*",
-		"prisma": "^7.2.0",
+		"drizzle-kit": "catalog:",
 		"elysia": "catalog:",
 		"typescript": "catalog:"
 	}

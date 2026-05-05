@@ -1,11 +1,11 @@
 import { apiKey } from "@better-auth/api-key";
 import { dash } from "@better-auth/infra";
-import { createPrismaClient } from "@repo/db";
+import db, { authSchema } from "@repo/db";
 import { env } from "@repo/env/server";
 import { sendEmail } from "@repo/mail";
 import { sendMagicLinkEmail, sendVerificationEmail } from "@repo/mail/template";
 import { betterAuth } from "better-auth";
-import { prismaAdapter } from "better-auth/adapters/prisma";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 import {
 	admin,
@@ -17,11 +17,10 @@ import {
 	username,
 } from "better-auth/plugins";
 export function createAuth() {
-	const prisma = createPrismaClient();
-
 	return betterAuth({
-		database: prismaAdapter(prisma, {
+		database: drizzleAdapter(db, {
 			provider: "mysql",
+			schema: authSchema,
 		}),
 		account: {
 			skipStateCookieCheck: true,

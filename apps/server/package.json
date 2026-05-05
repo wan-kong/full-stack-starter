@@ -17,7 +17,7 @@
 		"tsdown": "tsdown",
 		"check-types": "tsc -b",
 		"compile": "bun run ./scripts/compile.ts",
-		"auth:generate": "bun x auth generate --config ../../packages/auth/src/index.ts --output ../../packages/db/src/prisma/schema/auth.prisma --yes",
+		"auth:generate": "bun x auth generate --config ../../packages/auth/src/index.ts --adapter drizzle --dialect mysql --output ../../packages/db/src/schema.ts --yes",
 		"start": "bun run ./dist/bun/index.js"
 	},
 	"dependencies": {
