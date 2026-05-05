@@ -1,2 +1,3 @@
-import prisma from "@repo/db";
-export const db = prisma;
+import database from "@repo/db";
+
+export const db = database;

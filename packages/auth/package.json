@@ -15,10 +15,10 @@
 		"@repo/db": "workspace:*",
 		"@repo/env": "workspace:*",
 		"@repo/mail": "workspace:*",
-		"@better-auth/infra": "^0.1.14",
+		"@better-auth/infra": "^0.2.5",
 		"@better-auth/api-key": "catalog:",
 		"better-auth": "catalog:",
-		"@better-auth/prisma-adapter": "1.6.0",
+		"@better-auth/drizzle-adapter": "1.6.9",
 		"dotenv": "catalog:"
 	},
 	"devDependencies": {
